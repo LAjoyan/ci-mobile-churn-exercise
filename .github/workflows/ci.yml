@@ -4,23 +4,22 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/**'
-      - 'tests/**'
-      - 'data/**'
-      - 'pyproject.toml'
-      - 'uv.lock'
-      - '.github/workflows/**'
+      - "src/**"
+      - "tests/**"
+      - "data/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/**"
   pull_request:
     branches: [main]
     paths:
-      - 'src/**'
-      - 'tests/**'
-      - 'data/**'
-      - 'pyproject.toml'
-      - 'uv.lock'
-      - '.github/workflows/**'
+      - "src/**"
+      - "tests/**"
+      - "data/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/**"
 
-# Cancel ongoing runs on the same branch when a new push arrives
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -69,7 +68,6 @@ jobs:
         with:
           name: modell-${{ github.sha }}
           path: outputs/
-
 
   utvardera:
     needs: train
