@@ -20,6 +20,11 @@ on:
       - 'uv.lock'
       - '.github/workflows/**'
 
+# Cancel ongoing runs on the same branch when a new push arrives
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     runs-on: ubuntu-latest
