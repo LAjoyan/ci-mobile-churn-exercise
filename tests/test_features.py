@@ -1,8 +1,8 @@
 """Testnivå 1: kod. Enhetstester av feature-koden, utan modell och utan riktig data."""
 
 import pandas as pd
-from pandas import DataFrame
 import pytest
+from pandas import DataFrame
 
 from churn.data import skapa_features
 
@@ -32,13 +32,16 @@ def test_indata_andras_inte(liten_df: DataFrame):
     skapa_features(liten_df)
     pd.testing.assert_frame_equal(liten_df, original)
 
+
 def test_region_versaler_blir_sma_bokstaver():
     # Skapa data med versaler OCH de andra kolumnerna som funktionen kräver
-    df = pd.DataFrame({
-        "region": ["STOCKHOLM", "GÖTEBORG"],
-        "manadskostnad": [299.0, 149.0],
-        "data_gb_per_manad": [9.0, 0.0]
-    })
+    df = pd.DataFrame(
+        {
+            "region": ["STOCKHOLM", "GÖTEBORG"],
+            "manadskostnad": [299.0, 149.0],
+            "data_gb_per_manad": [9.0, 0.0],
+        }
+    )
     ut = skapa_features(df)
 
     # Uppgiften kräver att t.ex. 'STOCKHOLM' blir 'stockholm'
