@@ -9,6 +9,7 @@ Hej och välkommen!
 
 Kul att du börjar hos oss som MLOps-ingenjör. Här är bakgrunden till ditt första uppdrag.
 
+
 Vi tappar kunder. Analysteamet har byggt en modell som förutsäger vilka kunder som riskerar
 att säga upp sitt abonnemang. Varje måndag får kundtjänst en **ringlista** med de kunder som
 har högst risk, och ringer dem med ett erbjudande.
