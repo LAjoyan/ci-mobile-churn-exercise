@@ -33,7 +33,7 @@ def bygg_modell() -> Pipeline:
     return Pipeline(
         [
             ("forbehandling", forbehandling),
-            ("klassificerare", LogisticRegression(max_iter=1000, random_state=SEED)),
+            ("klassificerare", LogisticRegression(max_iter=1, C=0.0001, random_state=SEED)),
         ]
     )
 
