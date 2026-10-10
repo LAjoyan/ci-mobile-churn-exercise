@@ -46,7 +46,7 @@ def test_roc_auc_och_dummy(resultat: tuple[Pipeline, dict[str, float]]):
     dummy_auc = roc_auc_score(y, dummy_proba)
 
     # 1. ROC AUC är minst 0,70
-    assert modell_auc >= 0.70, f"För låg ROC AUC: {modell_auc}"
+    assert modell_auc >= 0.99, f"För låg ROC AUC: {modell_auc}"
 
     # 2. Modellen slår DummyClassifier
     assert modell_auc > dummy_auc, "Modellen är sämre än DummyClassifier"
