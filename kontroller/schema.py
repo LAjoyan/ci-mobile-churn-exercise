@@ -6,11 +6,15 @@ import pandera.pandas as pa
 # Inspect data/kundbas.csv to find the exact column names and expected types
 schema = pa.DataFrameSchema(
     {
-        # Använd namnet från den ursprungliga kundbas.csv
-        "data_gb_per_manad": pa.Column(float, pa.Check.le(100.0)),
+
         "kund_id": pa.Column(int),
-        "alder": pa.Column(int),
+        "alder": pa.Column(float, nullable=True),
         "region": pa.Column(str),
+        "abonnemang": pa.Column(str),
+        "manader_som_kund": pa.Column(int),
+        "manadskostnad": pa.Column(float),
+        "data_gb_per_manad": pa.Column(float, pa.Check.le(100.0)),
+        "supportarenden_12m": pa.Column(int),
         "avslutat": pa.Column(int),
     },
     strict=True,
