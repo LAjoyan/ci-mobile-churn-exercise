@@ -10,6 +10,7 @@ on:
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/**"
+      - "kontroller/**"
   pull_request:
     branches: [main]
     paths:
@@ -19,9 +20,19 @@ on:
       - "pyproject.toml"
       - "uv.lock"
       - ".github/workflows/**"
+      - "kontroller/**"
   schedule:
     - cron: "0 5 * * 1"
   workflow_dispatch:
+    inputs:
+      data_file:
+        description: 'Datafil som ska kontrolleras'
+        required: true
+        default: 'data/kundbas.csv'
+        type: choice
+        options:
+          - "data/kundbas.csv"
+          - "data/kundbas_ny_leverans.csv"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -42,8 +53,22 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pytest
 
+
+  datakontroll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+        with:
+          python-version: "3.11"
+      - name: Install dependencies (om pandera saknas i uv.lock)
+        run: pip install pandas pandera
+      - name: Kör datakontroll
+        run: python kontroller/schema.py ${{ inputs.data_file || 'data/kundbas.csv' }}
+
   train:
-    needs: test
+    needs: [test, datakontroll]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
