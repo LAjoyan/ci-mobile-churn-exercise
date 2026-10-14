@@ -12,12 +12,14 @@ schema = pa.DataFrameSchema(
         "alder": pa.Column(int),
         "region": pa.Column(str),
         "avslutat": pa.Column(int),
-    }
+    },
+    strict=True,
 )
 
 
 def validate_data(file_path):
     df = pd.read_csv(file_path)
+
     try:
         schema.validate(df, lazy=True)
         print(f"Validation successful for {file_path}")
