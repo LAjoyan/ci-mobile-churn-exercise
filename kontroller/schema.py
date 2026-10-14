@@ -1,19 +1,17 @@
 import sys
 
 import pandas as pd
-import pandera as pa
+import pandera.pandas as pa
 
 # Inspect data/kundbas.csv to find the exact column names and expected types
 schema = pa.DataFrameSchema(
     {
         # Använd namnet från den ursprungliga kundbas.csv
-        "Data_gb_per_manad": pa.Column(float, pa.Check.le(100.0)),
-        # Define the rest of your columns here
-        # Du kan även lägga till andra kolumner för en mer komplett validering, till exempel:
-        "Kund_id": pa.Column(int),
-        "Alder": pa.Column(int),
-        "Region": pa.Column(str),
-        "Avslutat": pa.Column(int),
+        "data_gb_per_manad": pa.Column(float, pa.Check.le(100.0)),
+        "kund_id": pa.Column(int),
+        "alder": pa.Column(int),
+        "region": pa.Column(str),
+        "avslutat": pa.Column(int),
     }
 )
 
