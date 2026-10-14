@@ -8,7 +8,7 @@ schema = pa.DataFrameSchema(
     {
 
         "kund_id": pa.Column(int),
-        "alder": pa.Column(float, nullable=True),
+        "alder": pa.Column(int, pa.Check.in_range(18, 110)),
         "region": pa.Column(str),
         "abonnemang": pa.Column(str),
         "manader_som_kund": pa.Column(int),
